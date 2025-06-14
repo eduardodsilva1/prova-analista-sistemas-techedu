@@ -66,3 +66,11 @@ Para que: eu saiba em que etapa do processo ela se encontra
 Critérios de Aceitação:
 - O colaborador deve visualizar uma lista com o status= "Pendente", "Aprovado", "Rejeitado", ou "Validado".
 - Se rejeitado, o motivo deve estar visível.
+
+## Regras de Negócio
+- 1: Solicitações só podem ser validadas pelo RH se estiverem previamente aprovadas pelo gestor.
+- 2: O motivo da rejeição é obrigatório se o status for "Rejeitado".
+- 3: Não é possível um colaborador aprovar sua própria solicitação.
+- 4: Treinamentos só podem ser solicitados para datas futuras.
+- 5: Cada aprovação ou rejeição deve registrar data, hora e usuário responsável (histórico).
+- 6: Um mesmo colaborador não pode ser inscrito em dois treinamentos com horários conflitantes.
