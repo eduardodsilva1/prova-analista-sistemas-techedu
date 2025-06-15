@@ -8,4 +8,25 @@ begin
         exibe mensagem de erro: "solicitaçao ja foi processada anteriormente."
         encerrar processo
     end if
+
+    exibir opçoes para o gestor: [aprovar] ou [rejeitar]
+
+    if gestor escolher "rejeitar" então
+
+        solicita o motivo da rejeiçao
+        if motivo da rejeiçao estiver vazio então
+            exibir mensagem de erro: "motivo da rejeiçao obrigatorio."
+            voltar para a etapa de entrada do motivo
+        end if
+        atualizar status para "rejeitado", salvar o nome do gestor e o motivo da rejeiçao no banco via sql update
+        registrar log da rejeiçao (data, hora, usuario, motivo)
+
+        tentar enviar notificaçao por e-mail ao colaborador
+        if falhar o envio de email então
+            salvar falha em tabela de erros
+            agendar reprocesso de notificaçao
+        end if
+
+        encerrar processo
+    end if
 end
