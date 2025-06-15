@@ -1,0 +1,11 @@
+begin
+
+    recebe id da solicitaçao de treinamento
+
+    busca status atual da solicitaçao no banco de dados via sql select
+
+    if status for diferente de "pendente" então
+        exibe mensagem de erro: "solicitaçao ja foi processada anteriormente."
+        encerrar processo
+    end if
+end
