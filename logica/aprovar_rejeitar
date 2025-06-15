@@ -21,7 +21,32 @@ begin
         atualizar status para "rejeitado", salvar o nome do gestor e o motivo da rejeiçao no banco via sql update
         registrar log da rejeiçao (data, hora, usuario, motivo)
 
-        tentar enviar notificaçao por e-mail ao colaborador
+        tentar enviar notificação por email ao colaborador
+        if falhar o envio de email então
+            salvar falha em tabela de erros
+            agendar reprocesso de notificaçao
+        end if
+
+        encerrar processo
+    end if
+
+    if gestor escolher "aprovar" então
+        buscar dados do colaborador da solicitaçao via sql select
+        if colaborador não encontrado então
+            exibir mensagem de erro: "colaborador nao encontrado."
+            encerrar processo
+        end if
+
+        if colaborador.status != "ativo" então
+            exibir mensagem de erro: "colaborador nao ativo."
+            encerrar processo
+        end if
+
+        atualizar status para "aprovado", salvar o nome do gestor no banco via sql update
+        
+        registrar log da aprovação (data, hora, usuario)
+
+        tentar enviar notificaçao por email ao colaborador
         if falhar o envio de email então
             salvar falha em tabela de erros
             agendar reprocesso de notificaçao
